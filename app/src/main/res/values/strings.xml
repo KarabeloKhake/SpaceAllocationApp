@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Dynamic Space Allocation</string>
+
+    <!--Buttons-->
+    <string name="button_add_course">Add Course</string>
+    <string name="button_login">LOGIN</string>
+    <string name="button_reset">RESET PASSWORD</string>
+    <string name="button_register">REGISTER</string>
+    <string name="button_save_profile">SAVE PROFILE</string>
+    <string name="button_save_qualification">SAVE QUALIFICATION</string>
+    <string name="button_update">UPDATE</string>
+
+    <!--Hints-->
+    <string name="hint_academic_institution">Academic Institution</string>
+    <string name="hint_city">City/Town</string>
+    <string name="hint_course_code">Course Code</string>
+    <string name="hint_course_description">Course Description</string>
+    <string name="hint_course_name">Course Name</string>
+    <string name="hint_department">Department of</string>
+    <string name="hint_education_level">Education Level</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_ethnic_group">Ethnic Group</string>
+    <string name="hint_faculty">Faculty of</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_home_address">Home Address</string>
+    <string name="hint_id_number">ID Number</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="hint_new_password">New Password</string>
+    <string name="hint_qualification_name">Name of Qualification</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_province">Province</string>
+    <string name="hint_retype">Retype Password</string>
+    <string name="hint_telephone_number">Telephone Number</string>
+    <string name="hint_user_code">User Code</string>
+
+    <!--Texts-->
+    <string name="text_add_course">Add Course</string>
+    <string name="text_add_qualification">Add Qualification</string>
+    <string name="text_classes">My Classes</string>
+    <string name="text_checking_credentials">Busy checking login credentials…please wait</string>
+    <string name="text_content_description">TODO</string>
+    <string name="text_email">Enter your registered email address to get a password reset link.</string>
+    <string name="text_gender">Gender</string>
+    <string name="text_getting_list_courses">Getting a list of registered courses…please wait</string>
+    <string name="text_library_capacity">Library Capacity</string>
+    <string name="text_list_courses">List of Registered Courses</string>
+    <string name="text_lecturer">Lecturer</string>
+    <string name="text_loading">Loading…please wait</string>
+    <string name="text_logging_lecturer_out">Logging lecturer out…please wait</string>
+    <string name="text_logging_in_lecturer">Logging in lecturer…please wait</string>
+    <string name="text_logging_student_out">Logging student out…please wait</string>
+    <string name="text_logging_in_student">Logging in student…please wait</string>
+    <string name="text_logging_in">Logging you in…please wait</string>
+    <string name="text_logout">Logout</string>
+    <string name="text_my_profile">My Profile</string>
+    <string name="text_race">Race</string>
+    <string name="text_register_here">Register Here</string>
+    <string name="text_registered_courses">Registered Courses</string>
+    <string name="text_registering_lecturer">Registering new lecturer…please wait</string>
+    <string name="text_registering_student">Registering new student…please wait</string>
+    <string name="text_reset_link">Sending reset link…please wait</string>
+    <string name="text_reset_password">Forgot password? Reset Here</string>
+    <string name="text_saving_course">Saving new course…please wait</string>
+    <string name="text_saving_qualification">Saving new qualification…please wait</string>
+    <string name="text_saving_user_info">Saving user info…please wait</string>
+    <string name="text_scan_code">SCAN CODE</string>
+    <string name="text_show_classes">Show Classes</string>
+    <string name="text_student">Student</string>
+    <string name="text_update_personal_details">Update Personal Details</string>
+    <string name="text_update_password">Update Password</string>
+    <string name="text_updating_personal_details">Updating personal details…please wait</string>
+    <string name="text_updating_password">Updating user password…please wait</string>
+    <string name="text_user">WHAT ARE YOU?</string>
+    <string name="text_welcome">WELCOME</string>
+</resources>

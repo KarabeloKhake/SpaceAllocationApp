@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.spaceallocation">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".app_utilities.AppClass"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.UserProfile"></activity>
+        <activity
+            android:name=".activities.student.AddQualification"
+            android:parentActivityName=".activities.student.StudentHome" />
+        <activity
+            android:name=".activities.student.AddCourse"
+            android:parentActivityName=".activities.student.StudentHome" />
+        <activity android:name=".activities.BookLibrary" />
+        <activity android:name=".activities.lecturer.LecturerHome" />
+        <activity android:name=".activities.student.StudentHome" />
+        <activity
+            android:name=".activities.UpdatePassword"
+            android:parentActivityName=".activities.student.StudentHome" />
+        <activity
+            android:name=".activities.ScanCode"
+            android:parentActivityName=".activities.Register" />
+        <activity
+            android:name=".activities.ResetPassword"
+            android:parentActivityName=".activities.Login" />
+        <activity
+            android:name=".activities.Register"
+            android:parentActivityName=".activities.Login" />
+        <activity android:name=".activities.Login" />
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity
+            android:name=".activities.Splash"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

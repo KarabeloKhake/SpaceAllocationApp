@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".activities.UserProfile">
+
+    <ProgressBar
+        android:id="@+id/update_personal_details_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/update_personal_details_form">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilFirstName"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_top"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_first_name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilLastName"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilFirstName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_last_name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilIDNumber"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilLastName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etIDNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_id_number"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_left"
+            android:layout_marginTop="5dp"
+            android:text="@string/text_gender"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilIDNumber" />
+
+        <Spinner
+            android:id="@+id/spGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spinner_left"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilCity"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilProvince">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_city"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilTelNumber"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilCity">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTelNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_telephone_number"
+                android:inputType="textPostalAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUserProfile"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/button_user_profile_top"
+            android:background="@drawable/custom_buttons"
+            android:onClick="btnSaveProfile_onClick"
+            android:text="@string/button_save_profile"
+            android:textColor="@color/colorButtonText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilTelNumber" />
+
+        <TextView
+            android:id="@+id/tvRace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_left"
+            android:layout_marginTop="5dp"
+            android:text="@string/text_race"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spGender" />
+
+        <Spinner
+            android:id="@+id/spRace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spinner_left"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRace" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilProvince"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="@dimen/til_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spRace">
+
+            <AutoCompleteTextView
+                android:id="@+id/acProvince"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/hint_province"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="@dimen/drawable_padding"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

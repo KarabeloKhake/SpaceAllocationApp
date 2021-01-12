@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Button Margins-->
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="button_space">5dp</dimen>
+    <dimen name="button_top">20dp</dimen>
+    <dimen name="button_user_profile_top">10dp</dimen>
+    <dimen name="button_updates">300dp</dimen>
+    <dimen name="button_width">150dp</dimen>
+
+    <!--Card View Margins-->
+    <dimen name="card_view_layout_margin">20dp</dimen>
+    <dimen name="card_view_course_elevation">5dp</dimen>
+    <dimen name="card_view_course_margins">10dp</dimen>
+    <dimen name="card_view_course_radius">5dp</dimen>
+
+    <!--Icon/Image Margins-->
+    <dimen name="drawable_padding">5dp</dimen>
+    <dimen name="icon_book_height">50dp</dimen>
+    <dimen name="icon_register_height">50dp</dimen>
+    <dimen name="icon_register_right">77dp</dimen>
+    <dimen name="icon_register_top">10dp</dimen>
+    <dimen name="icon_register_width">50dp</dimen>
+    <dimen name="icon_height">100dp</dimen>
+    <dimen name="icon_width">100dp</dimen>
+    <dimen name="image_logo_height">250dp</dimen>
+    <dimen name="image_logo_top">20dp</dimen>
+    <dimen name="image_logo_width">250dp</dimen>
+
+    <!--Layout Margins-->
+    <dimen name="linear_layout_top">10dp</dimen>
+    <dimen name="layout_button_top">20dp</dimen>
+
+    <!--Radio Group Margins-->
+    <!--    <dimen name="radio_group_left">55dp</dimen>-->
+
+    <!--Spinner Margins-->
+    <dimen name="spinner_left">55dp</dimen>
+
+    <!--Texts Margins-->
+    <dimen name="text_email_top">30dp</dimen>
+    <dimen name="text_left">55dp</dimen>
+    <dimen name="text_right">55dp</dimen>
+    <dimen name="text_gender_top">10dp</dimen>
+    <dimen name="text_list_courses_margins">10dp</dimen>
+    <dimen name="text_race_top">10dp</dimen>
+    <dimen name="text_register_here_top">10dp</dimen>
+    <dimen name="text_reset_top">10dp</dimen>
+    <dimen name="text_scan_code_top">20dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="text_user_code">5dp</dimen>
+    <dimen name="text_user_name_left_margin">10dp</dimen>
+    <dimen name="text_user_name_right_margin">10dp</dimen>
+    <dimen name="text_user_size">18sp</dimen>
+    <dimen name="text_user_top">30dp</dimen>
+    <dimen name="text_welcome_layout_margin">10dp</dimen>
+    <dimen name="text_welcome_size">30sp</dimen>
+
+    <!--Text Input Layout Margins-->
+    <dimen name="auto_text_view_height">50dp</dimen>
+    <dimen name="edit_text_height">50dp</dimen>
+    <dimen name="til_email_recovery_top">20dp</dimen>
+    <dimen name="til_email_top">10dp</dimen>
+    <dimen name="til_new_password">40dp</dimen>
+    <dimen name="til_space">5dp</dimen>
+    <dimen name="til_top">20dp</dimen>
+    <dimen name="til_user_code_top">15dp</dimen>
+    <dimen name="til_width">250dp</dimen>
+    <dimen name="til_width_second">330dp</dimen>
+</resources>

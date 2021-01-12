@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/logout"
+        android:icon="@drawable/ic_lock"
+        android:title="@string/text_logout"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="100"/>
+    <item android:id="@+id/student_profile"
+        android:title="@string/text_my_profile"
+        app:showAsAction="never"
+        android:orderInCategory="101"/>
+    <item android:id="@+id/updatePassword"
+        android:title="@string/text_update_password"
+        app:showAsAction="never"
+        android:orderInCategory="101"/>
+</menu>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Educational Levels Array-->
+    <string-array name="educational_levels_array">
+        <item>High School Matric</item>
+        <item>Higher Certificate</item>
+        <item>Diploma</item>
+        <item>National Diploma</item>
+        <item>Advanced Diploma</item>
+        <item>Degree</item>
+        <item>Honours</item>
+        <item>Masters</item>
+        <item>Doctorate</item>
+    </string-array>
+
+    <!--Ethnic Array-->
+    <string-array name="ethnic_array">
+        <item>--Select Race--</item>
+        <item>African</item>
+        <item>Coloured</item>
+        <item>Indian</item>
+        <item>White</item>
+    </string-array>
+
+    <!--Gender Array-->
+    <string-array name="gender_array">
+        <item>--Select Gender--</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <!--Province Array-->
+    <string-array name="province_array">
+        <item>Eastern Cape</item>
+        <item>Free State</item>
+        <item>Gauteng</item>
+        <item>Kwazulu Natal</item>
+        <item>Limpopo</item>
+        <item>Mpumalanga</item>
+        <item>Northern Cape</item>
+        <item>North West</item>
+        <item>Western Cape</item>
+    </string-array>
+
+    <!--Faculty Array-->
+    <string-array name="faculty_array">
+        <item>Engineering, Built Environment &amp; IT</item>
+        <item>Health &amp; Environment Sciences</item>
+        <item>Humanities</item>
+        <item>Management Sciences</item>
+    </string-array>
+
+    <!--Departments Arrays-->
+    <!--Faculty of Humanities Departments-->
+    <string-array name="humanities_departments_array">
+        <item>Communication Sciences</item>
+        <item>Design &amp; Studio Art</item>
+        <item>Language and Social Sciences Education</item>
+        <item>Mathematics, Science &amp; Technology Education</item>
+        <item>Post Graduate in Education</item>
+    </string-array>
+    <!--Courses Arrays-->
+    <!--Programmes of Communication Sciences-->
+    <string-array name="communication_sciences_courses_array">
+        <item>Doctor of Communication in Language Practice (Doct.)</item>
+        <item>Language Practice (Baccalaureus)</item>
+        <item>Language Practice (Adv. Dip.)</item>
+        <item>Language Practice &amp; Media Studies (Dip.)</item>
+        <item>Master of Communication in Language Practice (Mas.)</item>
+        <item>Media Studies (Adv. Dip.)</item>
+    </string-array>
+    <!--Programmes of Design & Studio Art-->
+    <string-array name="design_studio_art_courses_array">
+        <item>Art and Design (Extended programme)</item>
+        <item>Design &amp; Studio Art (Short Course)</item>
+        <item>Design &amp; Studio Art (Dip.)</item>
+        <item>Design Technology (Adv. Dip.)</item>
+        <item>Fine Art (Bacc.)</item>
+        <item>Graphic Design (Bacc.)</item>
+        <item>Master of Education (Mas.)</item>
+        <item>Studio Art (Adv. Dip.)</item>
+        <item>Doctor of Education (Post. Dip.)</item>
+    </string-array>
+    <!--Programmes Language and Social Sciences Education-->
+    <string-array name="language_social_sciences_education_courses_array">
+        <item>Economic &amp; Management Sciences(Bacc.)</item>
+        <item>Language Education (Bacc.)</item>
+    </string-array>
+    <!-- Programmes Mathematics, Science and Technology Education-->
+    <string-array name="mathematics_science_technology_education_courses_array">
+        <item>Computer Science(Bacc.)</item>
+        <item>Mathematics (Bacc.)</item>
+        <item>Natural Sciences (Bacc.)</item>
+        <item>Technology (Bacc.)</item>
+    </string-array>
+    <!--Programmes Post_Graduate_in_Education-->
+    <string-array name="post_grad_education_courses_array">
+        <item>Educational Management(Bach.)</item>
+        <item>Postgraduate Certificate in Education (Post. Dip.)</item>
+    </string-array>
+
+    <!--Faculty of Engineering Departments-->
+    <string-array name="engineering_built_environment_it_departments_array">
+        <item>Built Environment</item>
+        <item>Civil Engineering</item>
+        <item>Electrical, Electronic &amp; Computer Engineering</item>
+        <item>Information Technology</item>
+        <item>Mathematics &amp; Physical Sciences</item>
+        <item>Mechanical &amp; Mechatronic Engineering</item>
+    </string-array>
+    <!--Courses Arrays-->
+    <!--Programmes of Built Environment-->
+    <string-array name="built_environment_courses_array">
+        <item>Construction (H.Cert.)</item>
+        <item>Construction Management (Bach.)</item>
+        <item>Construction Management (Post Grad. Dip.)</item>
+        <item>Health &amp; Safety Management (Bach.)</item>
+        <item>Health &amp; Safety Management (Post Grad. Dip.)</item>
+        <item>Quantity Surveying (Post Grad. Dip.)</item>
+        <item>Quantity Surveying (Bach.)</item>
+        <item>Urban Development (Post Grad. Dip.)</item>
+    </string-array>
+    <!--Programmes of Civil Engineering-->
+    <string-array name="civil_engineering_courses_array">
+        <item>Civil Engineering (Dip.)</item>
+        <item>Civil Engineering (Bach.)</item>
+        <item>Hydrology and Water Resources Management (Bach.)</item>
+        <item>Logistics and Transportation Management (Adv. Dip.)</item>
+    </string-array>
+    <!--Programmes of Electrical, Electronic & Computer Engineering-->
+    <string-array name="electrical_electronic_computer_engineering_courses_array">
+        <item>Engineering Technology in Electrical Engineering (Dip.)</item>
+        <item>Engineering Technology in Electrical Engineering (Bach.)</item>
+        <item>Renewable Energy Technologies (H.Cert.)</item>
+    </string-array>
+    <!--Programmes of IT-->
+    <string-array name="information_technology_courses_array">
+        <item>CISCO Certified Network Associate (CCNA)</item>
+        <item>Computer Networking (Dip.)</item>
+        <item>Computer Networking (Adv. Dip)</item>
+        <item>Information Technology (Dip.)</item>
+        <item>Information Technology (Bach.)</item>
+        <item>Information Technology (Adv. Dip)</item>
+        <item>Information Technology (H.Cert.)</item>
+        <item>Information Technology (Post Grad. Dip.)</item>
+    </string-array>
+    <!--Programmes of Mechanical & Mechatronic Engineering-->
+    <string-array name="mechanical_mechatronic_engineering_courses_array">
+        <item>Engineering Technology in Mechanical Engineering (Dip.)</item>
+        <item>Engineering Technology in Mechanical Engineering (Bach.)</item>
+    </string-array>
+
+    <!--Faculty Health Departments-->
+    <array name="health_environment_sciences_departments_array">
+        <item>Agriculture</item>
+        <item>Clinical Sciences</item>
+        <item>Health Sciences</item>
+        <item>Life Sciences</item>
+    </array>
+    <!--Courses Arrays-->
+    <!--Programmes of Agriculture-->
+    <string-array name="agriculture_courses_array">
+        <item>Agricultural Extensions (Adv. Dip.)</item>
+        <item>Agricultural Management (N.Dip.)</item>
+        <item>Agricultural Management (Bacc.)</item>
+    </string-array>
+    <!--Programmes of Clinical Sciences-->
+    <array name="clinical_sciences_courses_array">
+        <item>Radiography in Diagnostics (Bach.)</item>
+    </array>
+    <!--Programmes of Health Sciences-->
+    <string-array name="health_sciences_courses_array">
+        <item>Biomedical Technology (Dip.)</item>
+        <item>Clinical Technology (Dip.)</item>
+        <item>Health Management (Adv. Dip.)</item>
+        <item>Health Sciences in Clinical Technology (Bach.)</item>
+        <item>Medical Laboratory Sciences (Bach.)</item>
+        <item>Somatology (Dip.)</item>
+        <item>Somatology (Bacc.)</item>
+    </string-array>
+    <!--Programmes of Life Sciences-->
+    <string-array name="life_sciences_courses_array">
+        <item>Dental Assisting (Higher Certificate)</item>
+        <item>Environmental Health (N.Dip.)</item>
+        <item>Environmental Health (Bach.)</item>
+        <item>Environmental Health (Bacc.)</item>
+    </string-array>
+
+    <!--Faculty of Management Sciences Departments-->
+    <string-array name="management_sciences_departments_array">
+        <item>Accounting &amp; Auditing</item>
+        <item>Business Management</item>
+        <item>Business Support Studies</item>
+        <item>Government Management</item>
+        <item>Hospitality Management</item>
+        <item>Tourism &amp; Event Management</item>
+    </string-array>
+    <!--Courses Arrays-->
+    <!--Programmes Accounting & Auditing-->
+    <string-array name="accounting_auditing_courses_array">
+        <item>Management Sciences in Accountancy (Bach.)</item>
+        <item>Management Sciences in Internal Auditing  (Bach.)</item>
+        <item>Postgraduate Studies: Management Sciences (Mast. &amp; Doct.)</item>
+    </string-array>
+    <!--Programmes of Business Management-->
+    <string-array name="business_management_courses_array">
+        <item>Human Resources Management (Dip.)</item>
+        <item>Human Resources Management (Adv. Dip.)</item>
+        <item>Human Resources Management (Post Grad. Dip.)</item>
+        <item>Marketing (Dip.)</item>
+        <item>Marketing (Adv. Dip.)</item>
+        <item>Marketing (Post Grad. Dip.)</item>
+    </string-array>
+    <!--Programmes of Business Support Studies-->
+    <string-array name="business_support_studies_courses_array">
+        <item>Applied Management (Adv. Dip.)</item>
+        <item>Entrepreneurial Management (Post Grad. Dip.)</item>
+        <item>Office Management &amp; Technology (Dip.)</item>
+        <item>Project Management (Post Grad. Dip.)</item>
+    </string-array>
+    <!--Programmes of Government Management-->
+    <string-array name="government_management_courses_array">
+        <item>Community Development Work (H.Cert.)</item>
+        <item>Public Management (Dip.)</item>
+        <item>Public Management (Adv. Dip.)</item>
+        <item>Public Management (Post Grad. Dip.)</item>
+    </string-array>
+    <!--Programmes of Hospitality Management-->
+    <string-array name="hospitality_management_courses_array">
+        <item>Hospitality Management (Dip.)</item>
+        <item>Hospitality Management (Adv. Dip.)</item>
+    </string-array>
+    <!--Programmes of Tourism Event Management-->
+    <string-array name="tourism_event_management_courses_array">
+        <item>Tourism Management (Dip.)</item>
+        <item>Tourism Management (Adv. Dip.)</item>
+        <item>Tourism Management (Post Grad. Dip.)</item>
+    </string-array>
+</resources>
