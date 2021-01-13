@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Patterns;
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
+import com.example.spaceallocation.entities.Course;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -13,7 +15,8 @@ public class AppClass extends Application {
     public static final String API_KEY = "39CBECF9-F598-438D-AC08-9FE79B16B102";
     public static final String SERVER_URL = "https://api.backendless.com";
     public static BackendlessUser user;
-//    public static List<Course> courses;
+    public static List<Course> courses;
+    public static Course course;
 
     @Override
     public void onCreate() {
@@ -22,6 +25,7 @@ public class AppClass extends Application {
         Backendless.setUrl(SERVER_URL);
         Backendless.initApp( getApplicationContext(), APPLICATION_ID, API_KEY );
         user = new BackendlessUser();
+        course = new Course();
     } //end onCreate()
 
     //Custom Methods

@@ -2,6 +2,8 @@ package com.example.spaceallocation.activities.student;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -20,11 +22,17 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.DataQueryBuilder;
 import com.backendless.persistence.local.UserIdStorageFactory;
 import com.example.spaceallocation.R;
 import com.example.spaceallocation.activities.UserProfile;
 import com.example.spaceallocation.activities.Login;
 import com.example.spaceallocation.activities.UpdatePassword;
+import com.example.spaceallocation.app_utilities.AppClass;
+import com.example.spaceallocation.app_utilities.CourseAdapter;
+import com.example.spaceallocation.entities.Course;
+
+import java.util.List;
 
 public class      StudentHome extends AppCompatActivity {
 
@@ -35,7 +43,11 @@ public class      StudentHome extends AppCompatActivity {
     ImageView ivAddCourse, ivClasses, ivLibrary, ivQualification;
     TextView tvAddCourse, tvClasses, tvLibrary, tvQualification, tvStudentName, tvStudentNumber;
     String sUserEmail, sUserPassword;
-
+    TextView tvListCourses, tvNoCourses;
+    Course course;
+    RecyclerView rvListCourses;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +70,11 @@ public class      StudentHome extends AppCompatActivity {
         tvQualification = findViewById(R.id.tvQualification);
         tvStudentName = findViewById(R.id.tvStudentName);
         tvStudentNumber = findViewById(R.id.tvStudentNumber);
+        tvListCourses = findViewById(R.id.tvListCourses);
+//        tvNoCourses = findViewById(R.id.tvNoCourses);
+        rvListCourses = findViewById(R.id.rvListCourses);
+        //set the layout manager
+        rvListCourses.setLayoutManager(layoutManager = new LinearLayoutManager(this));
 
         Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
             @Override
@@ -94,6 +111,31 @@ public class      StudentHome extends AppCompatActivity {
                 Toast.makeText(StudentHome.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
             } //end handleFault()
         });
+
+        if(course != null) {
+//            tvNoCourses.setVisibility(View.GONE);
+
+            //get all the registered courses
+            String sWhereClause = "userStudentNumber = '" + AppClass.user.getProperty("studentNumber") + "'";
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+            queryBuilder.setWhereClause(sWhereClause);
+            queryBuilder.setGroupBy("courseName");
+
+            Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
+                @Override
+                public void handleResponse(List<Course> response) {
+                    AppClass.courses = response;
+                    //set the adapter
+                    adapter = new CourseAdapter(StudentHome.this, AppClass.courses);
+                    rvListCourses.setAdapter(adapter);
+                } //end handleResponse()
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(StudentHome.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                } //end handleFault()
+            });
+        } //end if
 
         ivAddCourse.setOnClickListener(new View.OnClickListener() {
             @Override

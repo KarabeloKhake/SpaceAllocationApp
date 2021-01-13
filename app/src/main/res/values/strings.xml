@@ -43,7 +43,7 @@
     <string name="text_gender">Gender</string>
     <string name="text_getting_list_courses">Getting a list of registered courses…please wait</string>
     <string name="text_library_capacity">Library Capacity</string>
-    <string name="text_list_courses">List of Registered Courses</string>
+    <string name="text_list_courses">My Courses</string>
     <string name="text_lecturer">Lecturer</string>
     <string name="text_loading">Loading…please wait</string>
     <string name="text_logging_lecturer_out">Logging lecturer out…please wait</string>
@@ -53,6 +53,7 @@
     <string name="text_logging_in">Logging you in…please wait</string>
     <string name="text_logout">Logout</string>
     <string name="text_my_profile">My Profile</string>
+    <string name="text_no_courses">No courses available, please add your registered courses!</string>
     <string name="text_race">Race</string>
     <string name="text_register_here">Register Here</string>
     <string name="text_registered_courses">Registered Courses</string>
