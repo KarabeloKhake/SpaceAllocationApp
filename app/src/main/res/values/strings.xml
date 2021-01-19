@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">Dynamic Space Allocation</string>
+    <string name="app_name">CUT Dynamic Space Allocation App</string>
 
     <!--Buttons-->
     <string name="button_add_course">Add Course</string>
+    <string name="button_book_computer">BOOK COMPUTER</string>
+    <string name="button_check_booking">CHECK BOOKING</string>
+    <string name="button_check_capacity">CHECK LIBRARY CAPACITY</string>
     <string name="button_login">LOGIN</string>
+    <string name="button_make_booking">MAKE BOOKING</string>
     <string name="button_reset">RESET PASSWORD</string>
     <string name="button_register">REGISTER</string>
     <string name="button_save_profile">SAVE PROFILE</string>
@@ -42,7 +46,7 @@
     <string name="text_email">Enter your registered email address to get a password reset link.</string>
     <string name="text_gender">Gender</string>
     <string name="text_getting_list_courses">Getting a list of registered courses…please wait</string>
-    <string name="text_library_capacity">Library Capacity</string>
+    <string name="text_library_capacity">Library</string>
     <string name="text_list_courses">My Courses</string>
     <string name="text_lecturer">Lecturer</string>
     <string name="text_loading">Loading…please wait</string>

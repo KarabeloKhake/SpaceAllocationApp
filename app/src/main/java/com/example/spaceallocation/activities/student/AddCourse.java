@@ -29,6 +29,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 import static com.example.spaceallocation.app_utilities.AppClass.course;
+import static com.example.spaceallocation.app_utilities.AppClass.courses;
 import static com.example.spaceallocation.app_utilities.AppClass.user;
 
 public class AddCourse extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class AddCourse extends AppCompatActivity {
     private TextInputEditText etCourseCode, etCourseName, etCourseDescription;
     private TextInputLayout ilCourseCode, ilCourseName, ilCourseDescription;
     private String sCode, sDescription, sEmail, sName, sObjectId, sStudentNumber;
+    Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class AddCourse extends AppCompatActivity {
     //Custom Methods
     public void btnAddCourse_onClick(View view) {
         try {
+            course = new Course();
             //
             if(!Objects.requireNonNull(etCourseCode.getText()).toString().isEmpty() && !Objects.requireNonNull(etCourseDescription.getText()).toString().isEmpty() &&
                     !Objects.requireNonNull(etCourseName.getText()).toString().isEmpty()) {
@@ -136,7 +139,7 @@ public class AddCourse extends AppCompatActivity {
                 course.setCourseCode(sCode);
                 course.setCourseDescription(sDescription);
                 course.setCourseName(sName);
-                course.setObjectId(sObjectId);
+                course.setUserObjectId(sObjectId);
                 course.setUserEmail(sEmail);
                 course.setUserStudentNumber(sStudentNumber);
 
@@ -148,9 +151,10 @@ public class AddCourse extends AppCompatActivity {
                     public void handleResponse(Course response) {
                         showProgress(false);
                         Toast.makeText(AddCourse.this, "Course " + response.getCourseCode() + " successfully added!!", Toast.LENGTH_SHORT).show();
-                        etCourseCode.getText().clear();
-                        etCourseDescription.getText().clear();
-                        etCourseName.getText().clear();
+
+                        Objects.requireNonNull(etCourseCode.getText()).clear();
+                        Objects.requireNonNull(etCourseDescription.getText()).clear();
+                        Objects.requireNonNull(etCourseName.getText()).clear();
                     } //end handleResponse()
 
                     @Override

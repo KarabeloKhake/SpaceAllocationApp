@@ -17,14 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.UserProfile"/>
+        <activity android:name=".BookComputer"></activity>
+        <activity
+            android:name=".activities.Library"
+            android:parentActivityName=".activities.student.StudentHome" />
+        <activity android:name=".activities.UserProfile" />
         <activity
             android:name=".activities.student.AddQualification"
             android:parentActivityName=".activities.student.StudentHome" />
         <activity
             android:name=".activities.student.AddCourse"
             android:parentActivityName=".activities.student.StudentHome" />
-        <activity android:name=".activities.BookLibrary" />
         <activity android:name=".activities.lecturer.LecturerHome" />
         <activity android:name=".activities.student.StudentHome" />
         <activity

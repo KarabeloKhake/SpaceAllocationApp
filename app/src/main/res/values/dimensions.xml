@@ -2,16 +2,18 @@
 <resources>
     <!--Button Margins-->
     <dimen name="button_height">40dp</dimen>
-    <dimen name="button_space">5dp</dimen>
+    <dimen name="button_space">10dp</dimen>
     <dimen name="button_top">20dp</dimen>
     <dimen name="button_user_profile_top">10dp</dimen>
     <dimen name="button_updates">300dp</dimen>
     <dimen name="button_width">150dp</dimen>
+    <dimen name="button_qualification_width">180dp</dimen>
+    <dimen name="buttons_library_width">280dp</dimen>
 
     <!--Card View Margins-->
     <dimen name="card_view_layout_margin">20dp</dimen>
     <dimen name="card_view_course_elevation">5dp</dimen>
-    <dimen name="card_view_course_margins">10dp</dimen>
+    <dimen name="card_view_course_margins">2dp</dimen>
     <dimen name="card_view_course_radius">5dp</dimen>
 
     <!--Icon/Image Margins-->
@@ -23,16 +25,18 @@
     <dimen name="icon_register_width">50dp</dimen>
     <dimen name="icon_height">100dp</dimen>
     <dimen name="icon_width">100dp</dimen>
+    <dimen name="image_library_height">300dp</dimen>
+    <dimen name="image_library_width">300dp</dimen>
     <dimen name="image_logo_height">250dp</dimen>
-    <dimen name="image_logo_top">20dp</dimen>
+    <dimen name="image_top">20dp</dimen>
     <dimen name="image_logo_width">250dp</dimen>
 
     <!--Layout Margins-->
     <dimen name="linear_layout_top">10dp</dimen>
     <dimen name="layout_button_top">20dp</dimen>
 
-    <!--Radio Group Margins-->
-    <!--    <dimen name="radio_group_left">55dp</dimen>-->
+    <!--RecyclerView Margins-->
+    <dimen name="recycler_view_margins">5dp</dimen>
 
     <!--Spinner Margins-->
     <dimen name="spinner_left">55dp</dimen>

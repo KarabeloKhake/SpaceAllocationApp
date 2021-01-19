@@ -2,7 +2,6 @@ package com.example.spaceallocation.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -19,7 +18,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
@@ -31,7 +29,6 @@ import com.example.spaceallocation.activities.student.StudentHome;
 import com.example.spaceallocation.app_utilities.AppClass;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.util.Objects;
 
 public class UserProfile extends AppCompatActivity {
@@ -49,7 +46,7 @@ public class UserProfile extends AppCompatActivity {
     private String sGender, sProvince, sRace;                   //stores a gender & race item obtained from their respective lists
     ArrayAdapter<String> aGender, aProvince, aRace;             //adapters for holding gender & race arrays
     private final String USERS = "com.example.dynamicspaceallocation.Users";
-    String userObjectId;
+    String userObjectId, sUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +54,15 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.user_profile_activity);
         actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Update Personal Details");
+        sUser = getIntent().getStringExtra("user");
 
-        mUpdatePersonalDetailsFormView = findViewById(R.id.update_personal_details_form);
-        mProgressView = findViewById(R.id.update_personal_details_progress);
+        if(!sUser.equals("Student"))
+            actionBar.setTitle("\t\t\t\t\t\t\t\t\t\t\t\t\t\tLecturer Details");
+        else
+            actionBar.setTitle("\t\t\t\t\t\t\t\t\t\t\t\t\t\tStudent Details");
+
+        mUpdatePersonalDetailsFormView = findViewById(R.id.layout_form);
+        mProgressView = findViewById(R.id.progress_bar);
         tvLoad = findViewById(R.id.tvLoad);
         acProvince = findViewById(R.id.acProvince);
         etCity = findViewById(R.id.etCity);
@@ -94,23 +96,14 @@ public class UserProfile extends AppCompatActivity {
                         @Override
                         public void handleResponse(BackendlessUser response) {
                             //get all user's info
-//                            if(Objects.requireNonNull(etCity.getText()).toString().equals(""))
-//                                etCity.setHint(R.string.hint_city);
-//                            else
-                                etCity.setText(response.getProperty("city").toString());
+                            etCity.setText(response.getProperty("city").toString());
                             etFirstName.setText(response.getProperty("firstName").toString());
-//                            if(Objects.requireNonNull(etIDNumber.getText()).toString().equals(""))
-//                                etIDNumber.setHint(R.string.hint_id_number);
-//                            else
-                                etIDNumber.setText(response.getProperty("idNumber").toString());
+                            etIDNumber.setText(response.getProperty("idNumber").toString());
                             etLastName.setText(response.getProperty("lastName").toString());
                             sGender = response.getProperty("gender").toString();
                             sProvince = response.getProperty("province").toString();
                             sRace = response.getProperty("race").toString();
-//                            if(Objects.requireNonNull(etTelNumber.getText()).toString().equals(""))
-//                                etTelNumber.setHint(R.string.hint_telephone_number);
-//                            else
-                                etTelNumber.setText(response.getProperty("telNumber").toString());
+                            etTelNumber.setText(response.getProperty("telNumber").toString());
 
                             for(int x = 0; x < sGenderList.length; x++) {
                                 if(spGender.getItemAtPosition(x).equals(sGender))
@@ -122,6 +115,7 @@ public class UserProfile extends AppCompatActivity {
                                     spRace.setSelection(y);
                             } //end for
 
+                            sProvince = response.getProperty("province").toString();
                             acProvince.setText(sProvince, false);
                         } //end handleResponse()
                         @Override
@@ -153,14 +147,14 @@ public class UserProfile extends AppCompatActivity {
                 } //end if
             }
         });
-//        etIDNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(!hasFocus) {
-//                    validateIDNumber(((EditText) v).getText());
-//                } //end if
-//            }
-//        });
+        etIDNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    validateIDNumber(((EditText) v).getText());
+                } //end if
+            }
+        });
         etLastName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -177,14 +171,14 @@ public class UserProfile extends AppCompatActivity {
                 } //end if
             }
         });
-//        etTelNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(!hasFocus) {
-//                    validateTelNumber(((EditText) v).getText());
-//                } //end if
-//            }
-//        });
+        etTelNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    validateTelNumber(((EditText) v).getText());
+                } //end if
+            }
+        });
     } //end onCreate()
 
     //Custom Methods
@@ -201,11 +195,11 @@ public class UserProfile extends AppCompatActivity {
                     !Objects.requireNonNull(etIDNumber.getText()).toString().isEmpty() && !Objects.requireNonNull(etTelNumber.getText()).toString().isEmpty() &&
                     !Objects.requireNonNull(etLastName.getText()).toString().isEmpty() && !Objects.requireNonNull(acProvince.getText()).toString().isEmpty()) {
                 //validate id number
-//                if (Objects.requireNonNull(etIDNumber.getText()).toString().length() == 13) {
-//                    if (AppClass.isIDNumberValid(etIDNumber.getText().toString())) {
-//                        //validate tel number
-//                        if(etTelNumber.getText().toString().length() == 10) {
-//                            if(AppClass.isPhoneNumberValid(etTelNumber.getText().toString())) {
+                if (Objects.requireNonNull(etIDNumber.getText()).toString().length() == 13) {
+                    if (AppClass.isIDNumberValid(etIDNumber.getText().toString())) {
+                        //validate tel number
+                        if(etTelNumber.getText().toString().length() == 10) {
+                            if(AppClass.isPhoneNumberValid(etTelNumber.getText().toString())) {
                                 ilLastName.setError(null);
                                 ilFirstName.setError(null);
                                 ilTelNumber.setError(null);
@@ -273,18 +267,18 @@ public class UserProfile extends AppCompatActivity {
                                         Toast.makeText(UserProfile.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
                                     } //end handleFault()
                                 });
-//                            } //end if
-//                            else
-//                                ilTelNumber.setError("Tel. number not in the right format");
-//                        } //end if
-//                        else
-//                            ilTelNumber.setError("Tel. number must be 10 characters long");
-//                    } //end if
-//                    else
-//                        ilIDNumber.setError("Invalid SA ID number.");
-//                } //end if
-//                else
-//                    ilIDNumber.setError("ID number must be 13 characters long.");
+                            } //end if
+                            else
+                                ilTelNumber.setError("Tel. number not in the right format");
+                        } //end if
+                        else
+                            ilTelNumber.setError("Tel. number must be 10 characters long");
+                    } //end if
+                    else
+                        ilIDNumber.setError("Invalid SA ID number.");
+                } //end if
+                else
+                    ilIDNumber.setError("ID number must be 13 characters long.");
             } //end if
             else {
                 if(!Objects.requireNonNull(etCity.getText()).toString().isEmpty())

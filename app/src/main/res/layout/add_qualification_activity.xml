@@ -1,9 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
     tools:context=".activities.student.AddQualification">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_form">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilAcademicInstitution"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/til_width_second"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_top"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAcademicInstitution"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_library"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_academic_institution"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilEducationLevel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="@dimen/til_width_second"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilAcademicInstitution">
+
+            <AutoCompleteTextView
+                android:id="@+id/acEducationLevel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_school"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_education_level" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilQualification"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="@dimen/til_width_second"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilDepartment">
+
+            <AutoCompleteTextView
+                android:id="@+id/acQualification"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:drawableStart="@drawable/ic_school"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/hint_qualification_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveQualification"
+            android:layout_width="@dimen/button_qualification_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/button_top"
+            android:background="@drawable/custom_buttons"
+            android:onClick="btnSaveQualification_onClick"
+            android:text="@string/button_save_qualification"
+            android:textColor="@color/colorButtonText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilQualification" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilFaculty"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="@dimen/til_width_second"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilEducationLevel">
+
+            <AutoCompleteTextView
+                android:id="@+id/acFaculty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/hint_faculty" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilDepartment"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="@dimen/til_width_second"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_space"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilFaculty">
+
+            <AutoCompleteTextView
+                android:id="@+id/acDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/hint_department" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

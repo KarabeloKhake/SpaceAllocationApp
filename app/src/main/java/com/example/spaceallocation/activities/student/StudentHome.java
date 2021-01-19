@@ -9,8 +9,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.CollapsibleActionView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 import com.backendless.persistence.local.UserIdStorageFactory;
 import com.example.spaceallocation.R;
+import com.example.spaceallocation.activities.Library;
 import com.example.spaceallocation.activities.UserProfile;
 import com.example.spaceallocation.activities.Login;
 import com.example.spaceallocation.activities.UpdatePassword;
@@ -34,7 +37,7 @@ import com.example.spaceallocation.entities.Course;
 
 import java.util.List;
 
-public class      StudentHome extends AppCompatActivity {
+public class StudentHome extends AppCompatActivity {
 
     ActionBar actionBar;
     private View mProgressView;
@@ -43,8 +46,8 @@ public class      StudentHome extends AppCompatActivity {
     ImageView ivAddCourse, ivClasses, ivLibrary, ivQualification;
     TextView tvAddCourse, tvClasses, tvLibrary, tvQualification, tvStudentName, tvStudentNumber;
     String sUserEmail, sUserPassword;
+    String sWhereClause;                //the clause for courses of a specific logged in student
     TextView tvListCourses, tvNoCourses;
-    Course course;
     RecyclerView rvListCourses;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -55,14 +58,14 @@ public class      StudentHome extends AppCompatActivity {
         setContentView(R.layout.student_home_activity);
         actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("\t\t\t\t\t\t\t\t\tStudent Home");
+        actionBar.setTitle("\t\t\t\t\t\t\t\t\t\t\t\t\t\tStudent Home");
 
         mStudentHomeFormView = findViewById(R.id.layout_form);
         mProgressView = findViewById(R.id.progress_bar);
         tvLoad = findViewById(R.id.tvLoad);
         ivAddCourse = findViewById(R.id.ivAddCourse);
         ivClasses = findViewById(R.id.ivClasses);
-        ivLibrary = findViewById(R.id.ivLibrary);
+        ivLibrary = findViewById(R.id.ivCUTLibrary);
         ivQualification = findViewById(R.id.ivQualification);
         tvAddCourse = findViewById(R.id.tvAddCourse);
         tvClasses = findViewById(R.id.tvClasses);
@@ -71,8 +74,13 @@ public class      StudentHome extends AppCompatActivity {
         tvStudentName = findViewById(R.id.tvStudentName);
         tvStudentNumber = findViewById(R.id.tvStudentNumber);
         tvListCourses = findViewById(R.id.tvListCourses);
-//        tvNoCourses = findViewById(R.id.tvNoCourses);
+        tvNoCourses = findViewById(R.id.tvNoCourses);
         rvListCourses = findViewById(R.id.rvListCourses);
+        //set colors for icons
+//        ivAddCourse.setColorFilter(Color.GRAY);
+//        ivClasses.setColorFilter(Color.green(R.color.colorGreen));
+//        ivLibrary.setColorFilter(Color.YELLOW);
+//        ivQualification.setColorFilter(Color.BLUE);
         //set the layout manager
         rvListCourses.setLayoutManager(layoutManager = new LinearLayoutManager(this));
 
@@ -98,6 +106,29 @@ public class      StudentHome extends AppCompatActivity {
 
                             tvStudentName.setText(userNames);
                             tvStudentNumber.setText(response.getProperty("studentNumber").toString());
+
+                            //get all the registered courses
+                            sWhereClause = "userStudentNumber = '" + response.getProperty("studentNumber") + "'";
+                            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+                            queryBuilder.setWhereClause(sWhereClause);
+                            queryBuilder.setGroupBy("courseName");
+                            tvNoCourses.setVisibility(View.GONE);
+
+                            Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
+                                @Override
+                                public void handleResponse(List<Course> response) {
+                                    AppClass.courses = response;
+
+                                    //set the adapter
+                                    adapter = new CourseAdapter(StudentHome.this, response);
+                                    rvListCourses.setAdapter(adapter);
+                                } //end handleResponse()
+
+                                @Override
+                                public void handleFault(BackendlessFault fault) {
+                                    Toast.makeText(StudentHome.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                                } //end handleFault()
+                            });
                         } //end handleResponse()
                         @Override
                         public void handleFault(BackendlessFault fault) {
@@ -112,35 +143,16 @@ public class      StudentHome extends AppCompatActivity {
             } //end handleFault()
         });
 
-        if(course != null) {
-//            tvNoCourses.setVisibility(View.GONE);
-
-            //get all the registered courses
-            String sWhereClause = "userStudentNumber = '" + AppClass.user.getProperty("studentNumber") + "'";
-            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-            queryBuilder.setWhereClause(sWhereClause);
-            queryBuilder.setGroupBy("courseName");
-
-            Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
-                @Override
-                public void handleResponse(List<Course> response) {
-                    AppClass.courses = response;
-                    //set the adapter
-                    adapter = new CourseAdapter(StudentHome.this, AppClass.courses);
-                    rvListCourses.setAdapter(adapter);
-                } //end handleResponse()
-
-                @Override
-                public void handleFault(BackendlessFault fault) {
-                    Toast.makeText(StudentHome.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
-                } //end handleFault()
-            });
-        } //end if
-
         ivAddCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StudentHome.this, AddCourse.class));
+            }
+        });
+        ivLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentHome.this, Library.class));
             }
         });
         ivQualification.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +192,10 @@ public class      StudentHome extends AppCompatActivity {
                 });
                 break;
             case R.id.student_profile:
-                startActivity(new Intent(StudentHome.this, UserProfile.class));
+                Intent intent = new Intent(StudentHome.this, UserProfile.class);
+
+                intent.putExtra("user", "Student");
+                startActivity(intent);
                 break;
             case R.id.updatePassword:
                 startActivity(new Intent(StudentHome.this, UpdatePassword.class));
@@ -224,4 +239,3 @@ public class      StudentHome extends AppCompatActivity {
         });
     } //end showProgress()
 } //end class StudentHome()
-

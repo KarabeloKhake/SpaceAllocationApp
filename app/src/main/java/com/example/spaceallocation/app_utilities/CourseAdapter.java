@@ -14,14 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
     //Data Members
+    private Context context;
     private List<Course> courses;
 
     //Constructor
     public CourseAdapter(Context context, List<Course> list) {
+        this.context = context;
         courses = list;
     } //end overloaded constructor
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         //Data Members
         ImageView ivBook;
         TextView tvCourseCode, tvCourseName;

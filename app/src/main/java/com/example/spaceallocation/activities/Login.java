@@ -93,7 +93,6 @@ public class Login extends AppCompatActivity {
         /*
             purpose of this is to login registered user, either a lecturer or a student
         */
-
         try {
             //check if text inputs are empty
             if(!Objects.requireNonNull(etEmailAddress.getText()).toString().isEmpty() && !Objects.requireNonNull(etPassword.getText()).toString().isEmpty()) {
@@ -115,6 +114,7 @@ public class Login extends AppCompatActivity {
                                 showProgress(false);
                                 String userNames = response.getProperty("lastName") + " " + response.getProperty("firstName");
 
+                                //first check the user role of the user
                                 Toast.makeText(Login.this, userNames + " logged in successfully!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Login.this, StudentHome.class));
                                 finish();
@@ -150,7 +150,7 @@ public class Login extends AppCompatActivity {
         catch (Exception ex) {
             Toast.makeText(this, "Error: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
         } //end catch()
-    } //end onCreate()
+    } //end btnLogin()
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {

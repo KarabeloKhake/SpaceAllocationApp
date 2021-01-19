@@ -5,7 +5,7 @@ public class Course {
     private String courseCode;
     private String courseDescription;
     private String courseName;
-    private String objectId;
+    private String userObjectId;
     private String userStudentNumber;
     private String userEmail;
 
@@ -34,12 +34,12 @@ public class Course {
         this.courseName = courseName;
     } //end setCourseName()
 
-    public String getObjectId() {
-        return objectId;
-    }
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
+    public String getUserObjectId() {
+        return userObjectId;
+    } //end getUserObjectId()
+    public void setUserObjectId(String userObjectId) {
+        this.userObjectId = userObjectId;
+    } //end setUserObjectId()
 
     public String getUserStudentNumber() {
         return userStudentNumber;

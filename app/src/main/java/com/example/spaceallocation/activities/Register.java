@@ -27,6 +27,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
+import static com.example.spaceallocation.app_utilities.AppClass.user;
+
 public class Register extends AppCompatActivity {
 
     ActionBar actionBar;

@@ -47,7 +47,10 @@ public class Splash extends AppCompatActivity {
                         @Override
                         public void handleResponse(BackendlessUser response) {
                             showProgress(false);
-                            Toast.makeText(Splash.this, "Logged in successfully!!", Toast.LENGTH_SHORT).show();
+                            String userNames = response.getProperty("lastName") + " " + response.getProperty("firstName");
+
+                            //first check the user role of the user
+                            Toast.makeText(Splash.this, userNames + " logged in successfully!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Splash.this, StudentHome.class));
                             finish();
                         } //end handleResponse()

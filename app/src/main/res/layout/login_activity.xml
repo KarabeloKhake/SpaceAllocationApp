@@ -38,7 +38,7 @@
             android:id="@+id/ivLogo"
             android:layout_width="@dimen/image_logo_width"
             android:layout_height="@dimen/image_logo_height"
-            android:layout_marginTop="@dimen/image_logo_top"
+            android:layout_marginTop="@dimen/image_top"
             android:contentDescription="@string/text_content_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
