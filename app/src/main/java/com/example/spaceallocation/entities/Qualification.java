@@ -3,11 +3,16 @@ package com.example.spaceallocation.entities;
 public class Qualification {
     //Data Members
     private String department;
+    private String educationLevel;
     private String facultyName;
     private String institutionName;
     private String qualificationName;
-    private String userEmail;
-    private String userStudentNumber;
+    private String studentEmail;
+    private String studentNumber;
+    private String studentObjectId;
+
+    //Constructor
+    public Qualification() {}
 
     //Methods
     public String getDepartment() {
@@ -15,6 +20,13 @@ public class Qualification {
     }
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
     }
 
     public String getFacultyName() {
@@ -38,17 +50,24 @@ public class Qualification {
         this.qualificationName = qualificationName;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getStudentEmail() {
+        return studentEmail;
     }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 
-    public String getUserStudentNumber() {
-        return userStudentNumber;
+    public String getStudentNumber() {
+        return studentNumber;
     }
-    public void setUserStudentNumber(String userStudentNumber) {
-        this.userStudentNumber = userStudentNumber;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public String getStudentObjectId() {
+        return studentObjectId;
+    }
+    public void setStudentObjectId(String studentObjectId) {
+        this.studentObjectId = studentObjectId;
     }
 } //end class Qualification

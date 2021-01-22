@@ -46,11 +46,6 @@ public class StudentHome extends AppCompatActivity {
     ImageView ivAddCourse, ivClasses, ivLibrary, ivQualification;
     TextView tvAddCourse, tvClasses, tvLibrary, tvQualification, tvStudentName, tvStudentNumber;
     String sUserEmail, sUserPassword;
-    String sWhereClause;                //the clause for courses of a specific logged in student
-    TextView tvListCourses, tvNoCourses;
-    RecyclerView rvListCourses;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +68,11 @@ public class StudentHome extends AppCompatActivity {
         tvQualification = findViewById(R.id.tvQualification);
         tvStudentName = findViewById(R.id.tvStudentName);
         tvStudentNumber = findViewById(R.id.tvStudentNumber);
-        tvListCourses = findViewById(R.id.tvListCourses);
-        tvNoCourses = findViewById(R.id.tvNoCourses);
-        rvListCourses = findViewById(R.id.rvListCourses);
         //set colors for icons
 //        ivAddCourse.setColorFilter(Color.GRAY);
 //        ivClasses.setColorFilter(Color.green(R.color.colorGreen));
 //        ivLibrary.setColorFilter(Color.YELLOW);
 //        ivQualification.setColorFilter(Color.BLUE);
-        //set the layout manager
-        rvListCourses.setLayoutManager(layoutManager = new LinearLayoutManager(this));
 
         Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
             @Override
@@ -106,29 +96,6 @@ public class StudentHome extends AppCompatActivity {
 
                             tvStudentName.setText(userNames);
                             tvStudentNumber.setText(response.getProperty("studentNumber").toString());
-
-                            //get all the registered courses
-                            sWhereClause = "userStudentNumber = '" + response.getProperty("studentNumber") + "'";
-                            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-                            queryBuilder.setWhereClause(sWhereClause);
-                            queryBuilder.setGroupBy("courseName");
-                            tvNoCourses.setVisibility(View.GONE);
-
-                            Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
-                                @Override
-                                public void handleResponse(List<Course> response) {
-                                    AppClass.courses = response;
-
-                                    //set the adapter
-                                    adapter = new CourseAdapter(StudentHome.this, response);
-                                    rvListCourses.setAdapter(adapter);
-                                } //end handleResponse()
-
-                                @Override
-                                public void handleFault(BackendlessFault fault) {
-                                    Toast.makeText(StudentHome.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
-                                } //end handleFault()
-                            });
                         } //end handleResponse()
                         @Override
                         public void handleFault(BackendlessFault fault) {

@@ -20,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.local.UserIdStorageFactory;
 import com.example.spaceallocation.R;
 import com.example.spaceallocation.app_utilities.AppClass;
 import com.example.spaceallocation.entities.Qualification;
@@ -29,6 +31,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+
+import static com.example.spaceallocation.app_utilities.AppClass.qualification;
+import static com.example.spaceallocation.app_utilities.AppClass.user;
 
 public class AddQualification extends AppCompatActivity {
 
@@ -41,9 +46,13 @@ public class AddQualification extends AppCompatActivity {
     TextInputLayout ilAcademicInstitution, ilDepartment, ilFaculty, ilEducationLevel, ilQualification;
     private String[] sDepartments, sEducationList, sFaculties, sQualifications;
     private String sDepartment, sEducation, sFaculty, sQualification;
+    String sStudentEmail,       //holds the logged in student's email
+            sStudentNumber,     //holds the logged in student's id
+            sStudentObjectId;   //student object id
+
     private ArrayAdapter<String> aDepartment, aEducation, aFaculty, aQualification;
     private Context context;
-    Qualification qualification;
+//    Qualification qualification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +78,36 @@ public class AddQualification extends AppCompatActivity {
         context = getApplicationContext();
         setEducationLevels();
         setFaculties();
+
+        Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
+            @Override
+            public void handleResponse(Boolean response) {
+                if(response) {
+
+                    final String userObjectId = UserIdStorageFactory.instance().getStorage().get();
+
+                    //look for this student user in the mobile's storage
+                    Backendless.Data.of(BackendlessUser.class).findById(userObjectId, new AsyncCallback<BackendlessUser>() {
+                        @Override
+                        public void handleResponse(BackendlessUser response) {
+                            //user found
+//                            user = response;
+                            sStudentEmail = response.getEmail();
+                            sStudentNumber = response.getProperty("studentNumber").toString();
+                            sStudentObjectId = response.getObjectId();
+                        } //end handleResponse()
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Toast.makeText(AddQualification.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                        } //end handleFault()
+                    });
+                } //end if
+            } //end handleResponse()
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Toast.makeText(AddQualification.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+            } //end handleFault()
+        });
 
         etAcademicInstitution.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -116,7 +155,7 @@ public class AddQualification extends AppCompatActivity {
     //Custom Methods
     public void btnSaveQualification_onClick(View view) {
         try {
-            qualification = new Qualification();
+//            qualification = new Qualification();
             //
             if(!Objects.requireNonNull(etAcademicInstitution.getText()).toString().isEmpty() && !Objects.requireNonNull(acDepartment.getText()).toString().isEmpty() &&
                     !Objects.requireNonNull(acEducationLevel.getText()).toString().isEmpty() && !Objects.requireNonNull(acFaculty.getText()).toString().isEmpty() && !Objects.requireNonNull(acQualification.getText()).toString().isEmpty()) {
@@ -128,11 +167,13 @@ public class AddQualification extends AppCompatActivity {
                 ilQualification.setError(null);
 
                 qualification.setDepartment(acDepartment.getText().toString());
+                qualification.setEducationLevel(acEducationLevel.getText().toString());
                 qualification.setFacultyName(acFaculty.getText().toString());
                 qualification.setInstitutionName(etAcademicInstitution.getText().toString());
                 qualification.setQualificationName(acQualification.getText().toString());
-                qualification.setUserEmail(AppClass.user.getEmail());
-                qualification.setUserStudentNumber(AppClass.user.getProperty("userStudentNumber").toString());
+                qualification.setStudentEmail(sStudentEmail);
+                qualification.setStudentNumber(sStudentNumber);
+                qualification.setStudentObjectId(sStudentObjectId);
 
                 //save qualification in the database
                 showProgress(true);
@@ -142,6 +183,10 @@ public class AddQualification extends AppCompatActivity {
                     public void handleResponse(Qualification response) {
                         showProgress(false);
                         Toast.makeText(context, "Qualification " + response.getQualificationName() + " successfully saved!", Toast.LENGTH_SHORT).show();
+                        acDepartment.getText().clear();
+                        acFaculty.getText().clear();
+                        acQualification.getText().clear();
+                        etAcademicInstitution.getText().clear();
                     } //end handleResponse()
                     @Override
                     public void handleFault(BackendlessFault fault) {

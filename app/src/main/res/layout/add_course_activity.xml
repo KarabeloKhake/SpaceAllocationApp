@@ -29,89 +29,145 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/layout_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout_form">
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ilCourseName"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="@dimen/til_width"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilCourseName"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="@dimen/til_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/til_top"
+                app:boxBackgroundMode="outline"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCourseName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:drawableStart="@drawable/ic_book"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/hint_course_name"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilCourseCode"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="@dimen/til_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/til_space"
+                app:boxBackgroundMode="outline"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ilCourseName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCourseCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:drawableStart="@drawable/ic_book"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/hint_course_code"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilCourseDescription"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="@dimen/til_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/til_space"
+                app:boxBackgroundMode="outline"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ilCourseCode">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCourseDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:drawableStart="@drawable/ic_book"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/hint_course_description"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddCourse"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/button_top"
+                android:background="@drawable/custom_buttons"
+                android:onClick="btnAddCourse_onClick"
+                android:text="@string/button_add_course"
+                android:textColor="@color/colorButtonText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ilCourseDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/til_top"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCourseName"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:drawableStart="@drawable/ic_book"
-                android:drawablePadding="@dimen/drawable_padding"
-                android:hint="@string/hint_course_name"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ilCourseCode"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="@dimen/til_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/til_space"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ilCourseName">
+                <TextView
+                    android:id="@+id/tvListCourses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|center_horizontal"
+                    android:paddingLeft="@dimen/text_list_padding_left"
+                    android:text="@string/text_list_courses"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCourseCode"
+                <ImageView
+                    android:id="@+id/ivRefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:clickable="true"
+                    android:contentDescription="@string/text_content_description"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/ic_refresh" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNoCourses"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:drawableStart="@drawable/ic_book"
-                android:drawablePadding="@dimen/drawable_padding"
-                android:hint="@string/hint_course_code"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/text_no_courses"
+                android:textStyle="italic" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ilCourseDescription"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="@dimen/til_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/til_space"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ilCourseCode">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCourseDescription"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvListCourses"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:drawableStart="@drawable/ic_book"
-                android:drawablePadding="@dimen/drawable_padding"
-                android:hint="@string/hint_course_description"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/recycler_view_margins" />
+        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAddCourse"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="@dimen/button_top"
-            android:background="@drawable/custom_buttons"
-            android:onClick="btnAddCourse_onClick"
-            android:text="@string/button_add_course"
-            android:textColor="@color/colorButtonText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ilCourseDescription" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

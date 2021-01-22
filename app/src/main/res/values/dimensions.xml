@@ -36,7 +36,7 @@
     <dimen name="layout_button_top">20dp</dimen>
 
     <!--RecyclerView Margins-->
-    <dimen name="recycler_view_margins">5dp</dimen>
+    <dimen name="recycler_view_margins">10dp</dimen>
 
     <!--Spinner Margins-->
     <dimen name="spinner_left">55dp</dimen>
@@ -47,6 +47,7 @@
     <dimen name="text_right">55dp</dimen>
     <dimen name="text_gender_top">10dp</dimen>
     <dimen name="text_list_courses_margins">10dp</dimen>
+    <dimen name="text_list_padding_left">80dp</dimen>
     <dimen name="text_race_top">10dp</dimen>
     <dimen name="text_register_here_top">10dp</dimen>
     <dimen name="text_reset_top">10dp</dimen>

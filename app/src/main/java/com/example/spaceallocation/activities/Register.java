@@ -22,11 +22,13 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.example.spaceallocation.R;
 import com.example.spaceallocation.app_utilities.AppClass;
+import com.example.spaceallocation.entities.Student;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
+import static com.example.spaceallocation.app_utilities.AppClass.student;
 import static com.example.spaceallocation.app_utilities.AppClass.user;
 
 public class Register extends AppCompatActivity {

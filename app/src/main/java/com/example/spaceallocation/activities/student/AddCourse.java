@@ -2,6 +2,8 @@ package com.example.spaceallocation.activities.student;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,6 +14,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +22,16 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.DataQueryBuilder;
 import com.backendless.persistence.local.UserIdStorageFactory;
 import com.example.spaceallocation.R;
 import com.example.spaceallocation.app_utilities.AppClass;
+import com.example.spaceallocation.app_utilities.CourseAdapter;
 import com.example.spaceallocation.entities.Course;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.example.spaceallocation.app_utilities.AppClass.course;
@@ -42,6 +48,11 @@ public class AddCourse extends AppCompatActivity {
     private TextInputLayout ilCourseCode, ilCourseName, ilCourseDescription;
     private String sCode, sDescription, sEmail, sName, sObjectId, sStudentNumber;
     Course course;
+    ImageView ivRefresh;
+    TextView tvListCourses, tvNoCourses;
+    RecyclerView rvListCourses;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +71,17 @@ public class AddCourse extends AppCompatActivity {
         ilCourseCode = findViewById(R.id.ilCourseCode);
         ilCourseDescription = findViewById(R.id.ilCourseDescription);
         ilCourseName = findViewById(R.id.ilCourseName);
+        ivRefresh = findViewById(R.id.ivRefresh);
+        tvListCourses = findViewById(R.id.tvListCourses);
+        tvNoCourses = findViewById(R.id.tvNoCourses);
+        rvListCourses = findViewById(R.id.rvListCourses);
+        //set the layout manager
+        rvListCourses.setLayoutManager(layoutManager = new LinearLayoutManager(this));
 
         Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
             @Override
             public void handleResponse(Boolean response) {
                 if(response) {
-
                     final String userObjectId = UserIdStorageFactory.instance().getStorage().get();
 
                     //look for this student user in the mobile's storage
@@ -74,10 +90,34 @@ public class AddCourse extends AppCompatActivity {
                         public void handleResponse(BackendlessUser response) {
                             //user found
                             user = response;
-
+                            //get logged in user details
                             sEmail = user.getEmail();
                             sObjectId = user.getObjectId();
                             sStudentNumber = user.getProperty("studentNumber").toString();
+
+                            //get all the registered courses
+                            String sWhereClause = "userStudentNumber = '" + response.getProperty("studentNumber") + "'";
+                            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+                            queryBuilder.setWhereClause(sWhereClause);
+                            queryBuilder.setGroupBy("courseName");
+                            tvNoCourses.setVisibility(View.GONE);
+
+
+                            Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
+                                @Override
+                                public void handleResponse(List<Course> response) {
+                                    AppClass.courses = response;
+
+                                    //set the adapter
+                                    adapter = new CourseAdapter(AddCourse.this, response);
+                                    rvListCourses.setAdapter(adapter);
+                                } //end handleResponse()
+
+                                @Override
+                                public void handleFault(BackendlessFault fault) {
+                                    Toast.makeText(AddCourse.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                                } //end handleFault()
+                            });
                         } //end handleResponse()
                         @Override
                         public void handleFault(BackendlessFault fault) {
@@ -115,6 +155,38 @@ public class AddCourse extends AppCompatActivity {
                     validateCourseName(((EditText) v).getText());
                 } //end if
             }
+        });
+        //refresh the list to display newly registered courses
+        ivRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get all the registered courses
+                String sWhereClause = "userStudentNumber = '" + sStudentNumber + "'";
+                DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+                queryBuilder.setWhereClause(sWhereClause);
+                queryBuilder.setGroupBy("courseName");
+                tvNoCourses.setVisibility(View.GONE);
+
+                showProgress(true);
+                tvLoad.setText(R.string.text_getting_list_courses);
+                Backendless.Persistence.of(Course.class).find(queryBuilder, new AsyncCallback<List<Course>>() {
+                    @Override
+                    public void handleResponse(List<Course> response) {
+                        showProgress(false);
+                        AppClass.courses = response;
+
+                        //set the adapter
+                        adapter = new CourseAdapter(AddCourse.this, response);
+                        rvListCourses.setAdapter(adapter);
+                    } //end handleResponse()
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        showProgress(false);
+                        Toast.makeText(AddCourse.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                    } //end handleFault()
+                });
+            } //end onClick()
         });
     } //end onCreate()
 
@@ -160,10 +232,10 @@ public class AddCourse extends AppCompatActivity {
                     @Override
                     public void handleFault(BackendlessFault fault) {
                         showProgress(false);
+                        if(fault.getCode().equals("1000"))
                         Toast.makeText(AddCourse.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
                     } //end handleFault()
                 });
-
             } //end if
             else {
                 //
